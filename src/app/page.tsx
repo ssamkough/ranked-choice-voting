@@ -21,14 +21,9 @@ function HEADER_TEXT(state: State): string {
 }
 
 export default function Home() {
-  // TODO: set back to candiates selection
-  const [state, setState] = useState<State>("polling");
-  const [candidates, setCandidates] = useState<string[]>([
-    "nemo",
-    "one piece",
-    "monster",
-  ]);
-  const [voters, setVoters] = useState<string[]>(["sam", "adam", "marej"]);
+  const [state, setState] = useState<State>("candidateSelection");
+  const [candidates, setCandidates] = useState<string[]>([]);
+  const [voters, setVoters] = useState<string[]>([]);
   const [polls, setPolls] = useState<PollsArray>([]);
 
   return (
