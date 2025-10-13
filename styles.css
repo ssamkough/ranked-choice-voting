@@ -1,10 +1,19 @@
 * {
-    font-size: 1.1em;
+  font-size: 1.1em;
 }
 
 body {
-    padding: 1em;
-    margin: 1em;
-    border: 2px dashed plum;
-    height: 100svh;
+  padding: 1em;
+  margin: 1em;
+  border: 2px dashed plum;
+  height: 100%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  height: 100%;
+  border: 1px solid blue;
+  padding: 0.4em;
 }

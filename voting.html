@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ranked choice voting</title>
+    <title>voting | rcv</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="voting in ranked choice" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ranked choice voting" />
+    <meta property="og:description" content="voting in ranked choice" />
+    <meta property="og:url" content="https://rcv.sammy.pizza" />
+    <meta property="og:site_name" content="ranked choice voting" />
     <link rel="stylesheet" href="./styles.css" />
     <style>
       .container {
@@ -63,6 +73,7 @@
           const inputElement = document.createElement("input");
 
           inputElement.type = "number";
+          inputElement.min = 0;
           inputElement.max = options.length;
           inputElement.value = 0;
           inputElement.dataset.option = option;
