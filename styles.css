@@ -17,3 +17,11 @@ a {
   border: 1px solid blue;
   padding: 0.4em;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  min-width: 100px;
+  max-width: 400px;
+}
