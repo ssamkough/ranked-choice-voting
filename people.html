@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>people | rcv</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      let url = new URL(window.location.href);
+
+      function onSubmit(event) {
+        const inputElement = document.getElementsByTagName("input")[0];
+        const person = inputElement.value;
+        if (person.length < 0) {
+          alert("Enter a person name!");
+          return;
+        }
+        const liElement = document.createElement("li");
+        liElement.innerHTML = person;
+        const ulElement = document.getElementsByTagName("ul")[0];
+        ulElement.appendChild(liElement);
+        url.searchParams.append("p", person);
+        history.replaceState(history.state, "", url.href);
+      }
+    </script>
+    <style>
+      div {
+        display: flex;
+        justify-content: space-between;
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6em;
+        max-width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>people</h1>
+    <div>
+      <div class="form">
+        <label for="people-input">add people to hold votes</label>
+        <input name="people-input" id="people-input" />
+        <button onclick="onSubmit()">add person</button>
+      </div>
+      <a onclick="window.location='./voting.html'+window.location.search;"
+        >next: voting</a
+      >
+    </div>
+    <ul>
+      <p>people</p>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>options | rcv</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      let url = new URL(window.location.href);
+
+      function onSubmit(event) {
+        const inputElement = document.getElementsByTagName("input")[0];
+        const option = inputElement.value;
+        if (option.length < 0) {
+          alert("Enter an option!");
+          return;
+        }
+        const liElement = document.createElement("li");
+        liElement.innerHTML = option;
+        const ulElement = document.getElementsByTagName("ul")[0];
+        ulElement.appendChild(liElement);
+        url.searchParams.append("o", option);
+        history.replaceState(history.state, "", url.href);
+      }
+    </script>
+    <style>
+      div {
+        display: flex;
+        justify-content: space-between;
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6em;
+        max-width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>options</h1>
+    <div>
+      <div class="form">
+        <label for="option-input">add options to vote for</label>
+        <input name="option-input" id="option-input" />
+        <button onclick="onSubmit()">add option</button>
+      </div>
+      <a onclick="window.location='./people.html'+window.location.search;"
+        >next: people</a
+      >
+    </div>
+    <ul>
+      <p>options</p>
+    </ul>
+  </body>
+</html>

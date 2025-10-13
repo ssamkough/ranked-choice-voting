@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ranked choice voting</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+      }
+    </style>
+    <script>
+      function calculate() {
+        const inputElements = document.getElementsByTagName("input");
+        const optionsMap = {};
+
+        for (const option of options) {
+          optionsMap[option] = 0;
+        }
+
+        for (const input of inputElements) {
+          const currentValue = Number(optionsMap[input.dataset.option]);
+          const incomingValue = Number(input.value);
+          optionsMap[input.dataset.option] = currentValue + incomingValue;
+        }
+
+        let results = "";
+        for (const [key, value] of Object.entries(optionsMap)) {
+          results += `\n${key}: ${value}`;
+        }
+
+        alert(`The results are...${results}`);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>voting time!</h1>
+    <p>max points to give an option is <span class="max-points"></span></p>
+    <button onclick="calculate()">calculate</button>
+    <hr />
+    <div class="container"></div>
+    <script>
+      let url = new URL(window.location.href);
+      let options = url.searchParams.getAll("o");
+      let people = url.searchParams.getAll("p");
+
+      const maxPointsElement = document.getElementsByClassName("max-points")[0];
+      maxPointsElement.innerText = options.length;
+
+      const divElement = document.getElementsByTagName("div")[0];
+      const detailsElements = [];
+      for (const person of people) {
+        const detailsElement = document.createElement("details");
+        const summaryElement = document.createElement("summary");
+
+        summaryElement.innerText = person;
+        detailsElement.append(summaryElement);
+
+        for (const option of options) {
+          const labelInputContainerElement = document.createElement("div");
+          const labelElement = document.createElement("label");
+          const inputElement = document.createElement("input");
+
+          inputElement.type = "number";
+          inputElement.max = options.length;
+          inputElement.value = 0;
+          inputElement.dataset.option = option;
+
+          labelElement.innerText = option;
+          labelElement.style = "padding-top: 1em;";
+
+          labelInputContainerElement.style =
+            "display: flex; flex-direction: column; gap: 0.4em;";
+
+          labelInputContainerElement.append(labelElement);
+          labelInputContainerElement.append(inputElement);
+          detailsElement.append(labelInputContainerElement);
+        }
+
+        detailsElements.push(detailsElement);
+      }
+
+      for (const detailsElement of detailsElements) {
+        divElement.append(detailsElement);
+      }
+    </script>
+  </body>
+</html>

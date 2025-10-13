@@ -1,0 +1,10 @@
+* {
+    font-size: 1.1em;
+}
+
+body {
+    padding: 1em;
+    margin: 1em;
+    border: 2px dashed plum;
+    height: 100svh;
+}
